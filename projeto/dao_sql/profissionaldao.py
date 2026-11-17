@@ -5,7 +5,7 @@ class ProfissionalDAO(DAO):
     def inserir(self, obj):
         self.abrir()
         sql = '''
-            INSERT INTO profissional (nome, email, especialidade, senha)
+            INSERT INTO profissional (nome, email, especialidade, senha, foto)
             VALUES (?, ?, ?, ?, ?)
         '''
         self.execute(sql, (obj.get_nome(), obj.get_email(), obj.get_especialidade(), obj.get_senha(), obj.get_foto()))
