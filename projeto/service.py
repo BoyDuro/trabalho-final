@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 
 class Service:
     @staticmethod
-    def cliente_inserir(nome, email, fone, senha):
+    def cliente_inserir(nome, email, fone, senha, foto):
         profissionais = Service.profissional_listar()
         clientes = Service.cliente_listar()
         for p in profissionais:
@@ -23,7 +23,7 @@ class Service:
         for c in clientes:
             if email == c.get_email():
                 raise ValueError('Email não deve ser igual')
-        obj = Cliente(0, nome, email, fone, senha)
+        obj = Cliente(0, nome, email, fone, senha, foto)
         ClienteDAO().inserir(obj)
     @staticmethod
     def cliente_listar():
@@ -34,7 +34,7 @@ class Service:
     def cliente_listar_id(id):
         return ClienteDAO().listar_id(id)
     @staticmethod
-    def cliente_atualizar(id, nome, email, fone, senha):
+    def cliente_atualizar(id, nome, email, fone, senha, foto):
         profissionais = Service.profissional_listar()
         clientes = Service.cliente_listar()
         for p in profissionais:
@@ -43,7 +43,7 @@ class Service:
         for c in clientes:
             if id != c.get_id() and email == c.get_email():
                 raise ValueError('Email não deve ser igual')
-        obj = Cliente(id, nome, email, fone, senha)
+        obj = Cliente(id, nome, email, fone, senha, foto)
         ClienteDAO().atualizar(obj)
     @staticmethod
     def cliente_excluir(id):
@@ -160,7 +160,7 @@ class Service:
 
 
     @staticmethod
-    def profissional_inserir(nome, email, especialidade, senha):
+    def profissional_inserir(nome, email, especialidade, senha, foto):
         profissionais = Service.profissional_listar()
         clientes = Service.cliente_listar()
         for p in profissionais:
@@ -169,7 +169,7 @@ class Service:
         for c in clientes:
             if email == c.get_email():
                 raise ValueError('Email não deve ser igual')
-        obj = Profissional(0, nome, email, especialidade, senha)
+        obj = Profissional(0, nome, email, especialidade, senha, foto)
         ProfissionalDAO().inserir(obj)
     @staticmethod
     def profissional_listar():
@@ -180,7 +180,7 @@ class Service:
     def profissional_listar_id(id):
         return ProfissionalDAO().listar_id(id)
     @staticmethod
-    def profissional_atualizar(id, nome, email, especialidade, senha):
+    def profissional_atualizar(id, nome, email, especialidade, senha, foto):
         profissionais = Service.profissional_listar()
         clientes = Service.cliente_listar()
         for p in profissionais:
@@ -189,7 +189,7 @@ class Service:
         for c in clientes:
             if email == c.get_email():
                 raise ValueError('Email não deve ser igual')
-        obj = Profissional(id, nome, email, especialidade, senha)
+        obj = Profissional(id, nome, email, especialidade, senha, foto)
         ProfissionalDAO().atualizar(obj)
     @staticmethod
     def profissional_excluir(id):
@@ -304,7 +304,7 @@ class Service:
     def cliente_criar_admin():
         for c in Service.cliente_listar():
             if c.get_email() == "admin": return
-        Service.cliente_inserir("admin", "admin", "fone", "1234")
+        Service.cliente_inserir("admin", "admin", "fone", "1234", None)
 
     @staticmethod
     def cliente_autenticar(email, senha):

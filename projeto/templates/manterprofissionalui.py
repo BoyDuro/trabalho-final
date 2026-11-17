@@ -22,13 +22,16 @@ class ManterProfissionalUI:
             st.dataframe(df)
 
     def inserir():
+        foto = st.file_uploader('Escolha uma foto', type=['png', 'jpg', 'jpeg'])
         nome = st.text_input('Informe o nome')
         email = st.text_input('Informe o e-mail')
         especialidade = st.text_input('Informe a especialidade')
         senha = st.text_input('Informe a senha', type='password')
+        if foto: imagem = foto.getvalue()
+        else: imagem = None
         if st.button('Inserir'):
             try:
-                Service.profissional_inserir(nome, email, especialidade, senha)
+                Service.profissional_inserir(nome, email, especialidade, senha, imagem)
                 st.success('Profissional inserido com sucesso')
             except ValueError as erro:
                 st.error(erro)
@@ -40,14 +43,17 @@ class ManterProfissionalUI:
         if len(profissionais) == 0: st.write('Nenhum profissional cadastrado')
         else:
             op = st.selectbox('Atualização de Profissionais', profissionais)
+            foto = st.file_uploader('Nova foto', op.get_foto())
             nome = st.text_input('Informe o novo nome', op.get_nome())
             email = st.text_input('Informe o novo email', op.get_email())
             especialidade = st.text_input('Informe a nova especialidade', op.get_especialidade())
             senha = st.text_input('Nova senha', op.get_senha(), type='password')
+            if foto: imagem = foto.getvalue()
+            else: imagem = None
             if st.button('Atualizar'):
                 try:
                     id = op.get_id()
-                    Service.profissional_atualizar(id, nome, email, especialidade, senha)
+                    Service.profissional_atualizar(id, nome, email, especialidade, senha, imagem)
                     st.success('Profissional atualizado com sucesso')
                 except ValueError as erro:
                     st.error(erro)
