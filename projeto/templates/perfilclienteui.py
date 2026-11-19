@@ -7,7 +7,7 @@ class PerfilClienteUI:
         st.header('Meus Dados')
         op = Service.cliente_listar_id(st.session_state['usuario_id'])
         st.write('Foto de perfil')
-        st.image(op.get_foto())
+        st.image(op.get_foto(), width=150)
         foto = st.file_uploader('Nova foto', type=['png', 'jpg', 'jpeg'])
         nome = st.text_input('Informe o novo nome', op.get_nome())
         email = st.text_input('Informe o novo e-mail', op.get_email())

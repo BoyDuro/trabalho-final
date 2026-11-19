@@ -35,7 +35,7 @@ class ClienteDAO(DAO):
             UPDATE cliente SET nome=?, email=?, fone=?, senha=?, foto=?
             WHERE id=?
         '''
-        self.execute(sql, (obj.get_nome(), obj.get_email(), obj.get_fone(), obj.get_senha(), obj.get_id(), obj.get_foto()))
+        self.execute(sql, (obj.get_nome(), obj.get_email(), obj.get_fone(), obj.get_senha(), obj.get_foto(), obj.get_id()))
         self.fechar()
 
     def excluir(self, id):
