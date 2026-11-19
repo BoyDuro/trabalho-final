@@ -39,12 +39,12 @@ class ManterClienteUI:
         if len(clientes) == 0: st.write('Nenhum cliente cadastrado')
         else:
             op = st.selectbox('Atualização de Clientes', clientes)
-            foto = st.file_uploader('Nova foto', op.get_foto())
+            foto = st.file_uploader('Nova foto', type=['png', 'jpg', 'jpeg'])
             nome = st.text_input('Novo nome', op.get_nome())
             email = st.text_input('Novo e-mail', op.get_email())
             fone = st.text_input('Novo fone', op.get_fone())
             senha = st.text_input('Nova senha', op.get_senha(), type='password')
-            imagem = foto.getvalue() if foto else None
+            imagem = foto.getvalue() if foto else op.get_foto()
             if st.button('Atualizar'):
                 try:
                     id = op.get_id()

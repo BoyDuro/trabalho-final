@@ -43,13 +43,12 @@ class ManterProfissionalUI:
         if len(profissionais) == 0: st.write('Nenhum profissional cadastrado')
         else:
             op = st.selectbox('Atualização de Profissionais', profissionais)
-            foto = st.file_uploader('Nova foto', op.get_foto())
+            foto = st.file_uploader('Nova foto', type=['png', 'jpg', 'jpeg'])
             nome = st.text_input('Informe o novo nome', op.get_nome())
             email = st.text_input('Informe o novo email', op.get_email())
             especialidade = st.text_input('Informe a nova especialidade', op.get_especialidade())
             senha = st.text_input('Nova senha', op.get_senha(), type='password')
-            if foto: imagem = foto.getvalue()
-            else: imagem = None
+            imagem = foto.getvalue() if foto else op.get_foto()
             if st.button('Atualizar'):
                 try:
                     id = op.get_id()
