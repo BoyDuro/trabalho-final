@@ -18,12 +18,13 @@ from templates.pagaratendimentoui import PagarAtendimentoUI
 from templates.totalatendimentos import TotalAtendimentosUI
 from templates.listarhorariosconfirmadoshoje import ListarHorariosConfirmadosHojeUI
 from templates.listaragendaprofissional import ListarAgendaProfissionalUI
+from templates.visualizaragendasemanalui import VisualizarAgendaSemanalUI
 from service import Service
 import streamlit as st
 
 class IndexUI:
     def menu_admin():
-        op = st.sidebar.selectbox('Menu', ['Cadastro de Clientes', 'Cadastro de Serviços', 'Cadastro de Horários', 'Cadastro de Profissionais', 'Cadastro de Atendimentos', 'Total de Atendimentos', 'Listar Horários Confirmados de Hoje', 'Listar Agenda do Profissional', 'Alterar senha'])
+        op = st.sidebar.selectbox('Menu', ['Cadastro de Clientes', 'Cadastro de Serviços', 'Cadastro de Horários', 'Cadastro de Profissionais', 'Cadastro de Atendimentos', 'Total de Atendimentos', 'Listar Horários Confirmados de Hoje', 'Listar Agenda do Profissional', 'Visualizar Agenda Semanal', 'Alterar senha'])
         if op == 'Cadastro de Clientes': ManterClienteUI.main()
         if op == 'Cadastro de Serviços': ManterServicoUI.main()
         if op == 'Cadastro de Horários': ManterHorarioUI.main()
@@ -32,6 +33,7 @@ class IndexUI:
         if op == 'Total de Atendimentos': TotalAtendimentosUI.main()
         if op == 'Listar Horários Confirmados de Hoje': ListarHorariosConfirmadosHojeUI.main()
         if op == 'Listar Agenda do Profissional': ListarAgendaProfissionalUI.main()
+        if op == 'Visualizar Agenda Semanal': VisualizarAgendaSemanalUI.main()
         if op == 'Alterar senha': ADMAlterarSenhaUI.main()
     def sidebar():
         if 'usuario_id' not in st.session_state:

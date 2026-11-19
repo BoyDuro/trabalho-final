@@ -300,6 +300,15 @@ class Service:
         h.sort(key = lambda obj : obj.get_data())
         return h
 
+    def admin_visualizar_horarios_semanais():
+        h = []
+        horarios = Service.horario_listar()
+        for obj in horarios:
+            if obj.get_id_cliente() != None:
+                if obj.get_data() >= datetime.now() and obj.get_data() <= datetime.date.today() + timedelta(days=6): h.append(obj)
+        h.sort(key = lambda obj : obj.get_data())
+        return h
+
     @staticmethod
     def cliente_criar_admin():
         for c in Service.cliente_listar():
